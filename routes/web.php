@@ -13,6 +13,9 @@
 
 Route::get('/', 'DashboardController@index')->name('dashboard.index');
 
+Route::get('/index', function() {
+    return view('projects.index');
+});
 Route::get('/create', function() {
     return view('projects.create');
 });

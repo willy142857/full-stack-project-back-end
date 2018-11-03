@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="{{ asset('css/ionicons.min.css') }}">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="{{ asset('css/dataTables.bootstrap.min.css') }}">
     <!-- jvectormap -->
     <link rel="stylesheet" href="{{ asset('css/jquery-jvectormap.css') }}">
     <!-- Theme style -->
@@ -250,6 +252,9 @@
     <!-- jvectormap  -->
     <script src="{{ asset('js/jquery-jvectormap-1.2.2.min.js') }}"></script>
     <script src="{{ asset('js/jquery-jvectormap-world-mill-en.js') }}"></script>
+    <!-- DataTables -->
+    <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('js/dataTables.bootstrap.min.js') }}"></script>
     <!-- SlimScroll -->
     <script src="{{ asset('js/jquery.slimscroll.min.js') }}"></script>
     <!-- ChartJS -->
@@ -258,6 +263,19 @@
     <script src="{{ asset('js/pages/dashboard2.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('js/demo.js') }}"></script>
+    <script>
+      $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+          'paging'      : true,
+          'lengthChange': false,
+          'searching'   : false,
+          'ordering'    : true,
+          'info'        : true,
+          'autoWidth'   : false
+        })
+      })
+    </script>
 </body>
 
 </html>
