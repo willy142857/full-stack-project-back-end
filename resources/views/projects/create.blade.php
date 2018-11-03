@@ -29,7 +29,22 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <form role="form">
+              <form role="form" action="{{ route('projects.store') }}" method="post">
+                @csrf
+
+                <!-- error handling -->
+                @if($errors->any())
+                  <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <h4><i class="icon fa fa-ban"></i>Errors!</h4>
+                    <ul>
+                      @foreach($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
+
                 <!-- text input -->
                 <div class="form-group">
                   <label>提案人</label>
@@ -41,6 +56,15 @@
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                     <input type="email" id="email" class="form-control" placeholder="Enter ...">
                   </div>
+                </div>
+                <div class="form-group">
+                    <label for="category">計畫分類</label>
+                    <select id="category" name="category_id" class="form-control">
+                      @foreach($categories as $category)
+                        <option value="{{ $category->id }}">
+                          {{ $category->name }}</option>
+                      @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                   <label>Text Disabled</label>
@@ -128,9 +152,6 @@
                   <select class="form-control">
                     <option>option 1</option>
                     <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -138,31 +159,6 @@
                   <select class="form-control" disabled>
                     <option>option 1</option>
                     <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-
-                <!-- Select multiple-->
-                <div class="form-group">
-                  <label>Select Multiple</label>
-                  <select multiple class="form-control">
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Select Multiple Disabled</label>
-                  <select multiple class="form-control" disabled>
-                    <option>option 1</option>
-                    <option>option 2</option>
-                    <option>option 3</option>
-                    <option>option 4</option>
-                    <option>option 5</option>
                   </select>
                 </div>
 
