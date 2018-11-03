@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'DashboardController@index')->name('dashboard.index');
+Route::get('/',function (){
+    return redirect('dashboard.index');
+});
 
 //for test
 Route::get('/index', function() {
@@ -21,17 +23,19 @@ Route::get('/create', function() {
     return view('projects.create');
 });
 
-Route::get('projects/index', 'ProjectsController@index')->name('projects.index');
+Route::middleware('auth')->group(function () {
+    Route::get('projects/index', 'ProjectsController@index')->name('projects.index');
 
-Route::get('projects/create', 'ProjectsController@create')->name('projects.create');
+    Route::get('projects/create', 'ProjectsController@create')->name('projects.create');
 
-Route::post('projects', 'ProjectsController@store')->name('projects.store');
+    Route::post('projects', 'ProjectsController@store')->name('projects.store');
 
-Route::get('projects/{projects}/edit', 'ProjectsController@edit')->name('projects.edit');
+    Route::get('projects/{projects}/edit', 'ProjectsController@edit')->name('projects.edit');
 
-Route::patch('projects/{project}', 'ProjectController@update')->name('projects.update');
+    Route::patch('projects/{project}', 'ProjectController@update')->name('projects.update');
 
-Route::delete('projects/{project}', 'ProjectController@destroy')->name('projects.destroy');
+    Route::delete('projects/{project}', 'ProjectController@destroy')->name('projects.destroy');
+});
 
 Auth::routes();
 
