@@ -65,8 +65,8 @@
                     <td>回饋選項</td>
                     <td>相關網頁</td>
                     <td class="text-center">
-                      <a href="" class="btn btn-xs btn-primary">編輯</a>
-                      <form style="display: inline">
+                      <a href="{{ route('projects.edit',$project->id) }}" class="btn btn-xs btn-primary">編輯</a>
+                      <form action="{{ route('projects.destroy',$project->id) }}" method="post" style="display: inline">
                         <button type="submit" class="btn btn-xs btn-danger">刪除</button>
                       </form>
                     </td>
