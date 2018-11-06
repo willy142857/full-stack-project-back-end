@@ -19,18 +19,17 @@ Route::get('/',function (){
 Route::get('/index', function() {
     return view('projects.index');
 });
-Route::get('/create', function() {
-    return view('projects.create');
-});
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', 'DashboardController@index')->name('dashboard.index');
+
     Route::get('projects/index', 'ProjectsController@index')->name('projects.index');
 
     Route::get('projects/create', 'ProjectsController@create')->name('projects.create');
 
     Route::post('projects', 'ProjectsController@store')->name('projects.store');
 
-    Route::get('projects/{projects}/edit', 'ProjectsController@edit')->name('projects.edit');
+    Route::get('projects/{project}/edit', 'ProjectsController@edit')->name('projects.edit');
 
     Route::patch('projects/{project}', 'ProjectController@update')->name('projects.update');
 
