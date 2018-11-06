@@ -15,6 +15,21 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('fundraiser', 20);
+            $table->string('email', 60);
+            $table->string('name', 100);
+            $table->unsignedInteger('category_id');
+            $table->string('brief');
+            $table->date('started_at')->default(null);
+            $table->date('ended_at')->default(null);
+            $table->unsignedBigInteger('curr_amount');
+            $table->unsignedBigInteger('goal_amount');
+            $table->unsignedInteger('backer');
+            $table->text('description');
+            $table->json('feedback')->default(null);
+            $table->json('comment')->default(null);
+            $table->string('img_path')->default('');
+            $table->string('relative_web');
             $table->timestamps();
         });
     }
