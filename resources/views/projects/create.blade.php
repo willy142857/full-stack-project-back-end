@@ -31,8 +31,7 @@
             <div class="box-body" style="padding-left: 30px;padding-right: 30px">
               <form role="form" action="{{ route('projects.store') }}" method="post">
                 @csrf
-
-              <!-- error handling -->
+                <!-- error handling -->
                 @if($errors->any())
                   <div class="alert alert-danger alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -48,18 +47,21 @@
               <!-- text input -->
                 <div class="form-group">
                   <label>提案人</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
+                  <input type="text" class="form-control" placeholder="Enter ..."
+                    name="fundraiser" value="{{ old('fundraiser') }}">
                 </div>
                 <div class="form-group">
                   <label for="email">信箱</label>
                   <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-                    <input type="email" id="email" class="form-control" placeholder="Enter ...">
+                    <input type="email" id="email" class="form-control" placeholder="Enter ..."
+                      name="email" value="{{ old('email') }}">
                   </div>
                 </div>
                 <div class="form-group">
                   <label>計畫名稱</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
+                  <input type="text" class="form-control" placeholder="Enter ..."
+                    name="name" value="{{ old('name') }}">
                 </div>
                 <div class="form-group">
                   <label for="category">計畫分類</label>
@@ -77,7 +79,8 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input type="text" class="form-control pull-right" id="datepicker1">
+                      <input type="text" class="form-control pull-right" id="datepicker1"
+                        name="started_at" value="{{ old('started_at') }}">
                     </div>
                   </div>
                 </div>
@@ -88,20 +91,23 @@
                       <div class="input-group-addon">
                         <i class="fa fa-calendar"></i>
                       </div>
-                      <input type="text" class="form-control pull-right" id="datepicker2">
+                      <input type="text" class="form-control pull-right" id="datepicker2"
+                        name="ended_at" value="{{ old('ended_at') }}">
                     </div>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="amount">計畫目標</label>
                   <div class="input-group">
-                    <input type="number" id="amount" class="form-control" placeholder="Enter ...">
+                    <input type="number" id="amount" class="form-control" placeholder="Enter ..."
+                      name="goal_amount" value="{{ old('goal_amount') }}">
                     <span class="input-group-addon">NTD</span>
                   </div>
                 </div>
                 <div class="form-group">
                   <label>計畫簡介</label>
-                  <input type="text" class="form-control" placeholder="Enter ...">
+                  <input type="text" class="form-control" placeholder="Enter ..."
+                    name="brief" value="{{ old('brief') }}">
                 </div>
                 <div class="form-group">
                   <label>封面照片</label>
@@ -109,7 +115,8 @@
                 </div>
                 <div class="form-group">
                   <label>計畫說明</label>
-                  <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                  <textarea class="form-control" rows="4" placeholder="Enter ..."
+                    name="description">{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
                   <label>回饋選項金額</label>
@@ -124,11 +131,13 @@
                 </div>
                 <div class="form-group">
                   <label>回饋說明</label>
-                  <textarea class="form-control" rows="4" placeholder="Enter ..."></textarea>
+                  <textarea class="form-control" rows="4" placeholder="Enter ..."
+                    ></textarea>
                 </div>
                 <div class="form-group">
                   <label>相關網頁</label>
-                  <input type="url" class="form-control" placeholder="Enter ...">
+                  <input type="url" class="form-control" placeholder="Enter ..."
+                    name="relative_web" value="{{ old('relative_web') }}">
                 </div>
                 <div class="form-group">
                   <div class="checkbox">
