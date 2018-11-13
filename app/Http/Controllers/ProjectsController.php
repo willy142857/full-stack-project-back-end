@@ -9,14 +9,14 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
 
-    // Display a listing of the resource.
+    // Display a l  isting of the resource.
     public function index()
     {
         $projects = Project::orderBy('created_at', 'DESC')->get();
         //for debug, stop and print data
         //dd($products);
 
-        $data = ['project' => $projects];
+        $data = ['projects' => $projects];
         return view('projects.index', $data);
     }
 
@@ -33,11 +33,16 @@ class ProjectsController extends Controller
     // Store a newly created resource in storage.
     public function store(Request $request)
     {
+        $data = $request->all();
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
         ]);
-        Project::create($request->all());
+        $data['started_at']= date('Y-m-d', strtotime($data['started_at']));
+        $data['ended_at']= date('Y-m-d', strtotime($data['ended_at']));
+        $data['feedback']=json_encode('123');
+        $data['comment']=json_encode('123');;
+        Project::create($data);
         return redirect(route('projects.index'));
     }
 
