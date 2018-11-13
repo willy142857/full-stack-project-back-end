@@ -6,7 +6,7 @@ use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class ProjectController extends Controller
+class ProjectsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,11 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'description' => 'required',
+        ]);
+        Project::create($request->all());
     }
 
     /**
@@ -57,9 +61,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Project $project)
     {
-        //
+        return response()->json($project);
     }
 
     /**
@@ -69,9 +73,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Project $project)
     {
-        //
+        $project->update($request->all());
     }
 
     /**
@@ -80,7 +84,7 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
         //
     }
