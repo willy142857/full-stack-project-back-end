@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('projects/{project}', 'ProjectsController@update')->name('projects.update');
 
     Route::delete('projects/{project}', 'ProjectsController@destroy')->name('projects.destroy');
+
+
 });
 
 Auth::routes();
