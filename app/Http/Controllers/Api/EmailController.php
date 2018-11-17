@@ -8,23 +8,27 @@ use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function sendMail(Request $request)
     {
-//        $this->validate(
-//            $request,
-//            [
-//                'email'=> 'required|string|email',
-//            ]
-//        );
+        $this->validate(
+            $request,
+            [
+                'email'=> 'required|string|email',
+            ]
+        );
 
         $data = [
-            'title' => '測試使用 Laravel 5 的 Gmail 寄信服務',
+            'title' => '重設密碼驗證信',
+            'content' => '請點擊以下網址重設密碼',
+            'url' => 'http://localhost:4200/resetPassword',
         ];
 
-
-
         Mail::send('emails.welcome', $data, function ($message)use ($request) {
-            $message->to('jj8611192@gmail.com');
+            $message->to($request->get('email'));
             $message->subject('重設密碼');
         });
 
