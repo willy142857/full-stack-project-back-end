@@ -24,7 +24,7 @@ Route::get('categories', 'Api\CategoryController@index');
 
 Route::post('login', 'Api\AuthController@login');
 Route::post('register', 'Api\AuthController@register');
-Route::get('retrievepassword','Api\EmailController@sendMail');
+Route::post('retrievepassword','Api\EmailController@sendMail');
 
 Route::middleware('auth:api')->group(function (){
     Route::post('projects', 'Api\ProjectsController@store');
