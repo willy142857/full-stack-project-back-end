@@ -2,21 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\ProjectResource;
 use App\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class ProjectsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $projects = Project::orderBy('created_at', 'DESC')->get();
-        return response()->json($projects);
+        ProjectResource::withoutWrapping();
+
+        return ProjectResource::collection($projects);
     }
 
     /**
