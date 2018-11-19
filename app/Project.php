@@ -19,14 +19,22 @@ class Project extends Model
         'goal_amount',
         'backer',
         'description',
-        'feedback',
-        'comment',
-        'relative_web',
         'img_path',
+        'relative_web',
     ];
 
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function feedbacks()
+    {
+        return $this->hasMany(Feedback::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }
