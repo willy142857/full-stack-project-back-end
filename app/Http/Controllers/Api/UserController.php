@@ -11,8 +11,8 @@ class UserController extends Controller
 {
     public function index()
     {
-        $user = User::findOrFail(\auth('api')->id());
-        return response()->json($user);
+        //$user = User::findOrFail(\auth('api')->id());
+        return response()->json(\auth('api')->user());
     }
 
     /**
@@ -65,14 +65,14 @@ class UserController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
-        $user->update($request->all());
+        //$user->update($request->all());
     }
 
     /**
