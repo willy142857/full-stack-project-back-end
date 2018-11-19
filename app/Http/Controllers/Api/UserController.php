@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -84,13 +85,25 @@ class UserController extends Controller
         //
     }
 
-    public function resetPassword(Request $request, User $user)
+    public function resetPassword(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email|string',
             'password' => 'required|string|min:6'
         ]);
 
-        $user->update($request->all());
+
+
+        $user = User::where('email','=',$request->get('email'))->get();
+
+        $user->password=$request->password;
+
+        $newData=[
+            'password' => Hash::make($request->input('email')),
+        ];
+
+        $user['0']->update($newData);
+
+        //$user->update($request->all());
     }
 }
