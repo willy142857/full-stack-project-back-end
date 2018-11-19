@@ -34,7 +34,7 @@
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-                  <tr>
+                  <tr class="text-center">
                     <th>#</th>
                     <th>計畫名稱</th>
                     <th>提案人</th>
@@ -47,7 +47,8 @@
                     <th>計畫募資金額</th>
                     <th>支持人數</th>
                     <th>計畫描述</th>
-                    <th>回饋選項</th>
+                    <th style="width: 250px">回饋選項</th>
+                    <th>封面圖片</th>
                     <th>相關網頁</th>
                     <th>管理</th>
                   </tr>
@@ -67,9 +68,17 @@
                     <td>{{ $project->goal_amount }}</td>
                     <td>{{ $project->backer }}</td>
                     <td>{{ $project->description }}</td>
-                    <td>{{ $project->feedback }}</td>
+                    <td>
+                      @foreach($project->feedbacks as $feedback)
+                            <p>日期: {{ $feedback->date }}</p>
+                            <p>價錢: {{ $feedback->price }}</p>
+                            <p>描述: {{ $feedback->description }}</p>
+                            <p>支持人數: {{ $feedback->backer }}</p>
+                      @endforeach
+                    </td>
                     <td>{{ $project->img_path }}</td>
                     <td>{{ $project->relative_web }}</td>
+
                     <td class="text-center">
                       <a href="{{ route('projects.edit', $project->id) }}" class="btn btn-xs btn-primary">編輯</a>
                       <form action="{{ route('projects.destroy', $project->id) }}" method="post" style="display: inline">
@@ -80,23 +89,6 @@
                   @endforeach
                 </tbody>
                 <tfoot>
-                <tr>
-                  <th>#</th>
-                  <th>計畫名稱</th>
-                  <th>提案人</th>
-                  <th>聯絡信箱</th>
-                  <th>分類</th>
-                  <th>計畫簡介</th>
-                  <th>開始時間</th>
-                  <th>結束時間</th>
-                  <th>已募資金額</th>
-                  <th>計畫募資金額</th>
-                  <th>支持人數</th>
-                  <th>計畫描述</th>
-                  <th>回饋選項</th>
-                  <th>相關網頁</th>
-                  <th>管理</th>
-                </tr>
                 </tfoot>
               </table>
             </div>
