@@ -89,8 +89,8 @@ class UserController extends Controller
     public function resetPassword(Request $request, User $user)
     {
         $this->validate($request, [
-            'email' => 'required|email',
-            'password' => 'required'
+            'email' => 'required|email|string',
+            'password' => 'required|string|min:6'
         ]);
 
         $user->update($request->all());
