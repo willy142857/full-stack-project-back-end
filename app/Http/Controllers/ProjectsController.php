@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Feedback;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,9 @@ class ProjectsController extends Controller
         //for debug, stop and print data
         //dd($projects);
 
-        $data = ['projects' => $projects];
+        $data = [
+            'projects' => $projects,
+        ];
 
         return view('projects.index', $data);
     }
@@ -37,13 +40,20 @@ class ProjectsController extends Controller
 
         $data = $request->all();
         $this->validate($request, [
+            'fundraiser' => 'required',
+            'email' => 'required',
             'name' => 'required',
+            'category_id' => 'required',
+            'brief' => 'required',
+            'started_at' => 'required',
+            'ended_at' =>'required',
+            'goal_amount' => 'required',
             'description' => 'required',
+            'img_path' => 'required',
+            'relative_web' => 'required',
         ]);
-        $data['started_at']= date('Y-m-d', strtotime($data['started_at']));
-        $data['ended_at']= date('Y-m-d', strtotime($data['ended_at']));
-        $data['feedback']=json_encode('123');
-        $data['comment']=json_encode('123');;
+        $data['started_at'] = date('Y-m-d', strtotime($data['started_at']));
+        $data['ended_at'] = date('Y-m-d', strtotime($data['ended_at']));
         Project::create($data);
         return redirect(route('projects.index'));
     }
