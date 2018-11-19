@@ -67,12 +67,10 @@ class UserController extends Controller
      */
     public function update(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
-
-        //$user->update($request->all());
+        $user = \auth('api')->user();
+        $user->address = $request->address;
+        $user->save();
+        return response()->json($user);
     }
 
     /**
