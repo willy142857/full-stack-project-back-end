@@ -99,7 +99,7 @@ class UserController extends Controller
         $user->password=$request->password;
 
         $newData=[
-            'password' => Hash::make($request->input('email')),
+            'password' => Hash::make($request->input('password')),
         ];
 
         $user['0']->update($newData);
