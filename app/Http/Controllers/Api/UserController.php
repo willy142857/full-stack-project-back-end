@@ -69,7 +69,7 @@ class UserController extends Controller
     public function update(Request $request)
     {
         $user = \auth('api')->user();
-        $user->address = $request->address;
+        $user->update($request->all());
         $user->save();
         return response()->json($user);
     }
