@@ -16,8 +16,16 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
+    //FIXME: email password 不可為fillable
     protected $fillable = [
-        'name', 'email', 'password','phone','address','sex','birth','description'
+        'name',
+        'email',
+        'password',
+        'phone',
+        'address',
+        'sex',
+        'birth',
+        'description'
     ];
 
     /**
@@ -26,9 +34,14 @@ class User extends Authenticatable implements JWTSubject
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
+    function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 
     public function getJWTIdentifier()
     {
