@@ -33,6 +33,7 @@ Route::middleware('auth:api')->group(function () {
     Route::put('projects/{project}', 'Api\ProjectsContsroller@update');
     Route::get('profile', 'Api\UserController@index');
     Route::put('profile', 'Api\UserController@update');
+    Route::get('profile/projects', 'Api\UserController@showFollowing');
     Route::post('logout', 'Api\AuthController@logout');
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('orders', 'Api\OrderController@store');

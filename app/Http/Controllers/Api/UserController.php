@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Project;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -93,17 +94,21 @@ class UserController extends Controller
         ]);
 
 
+        $user = User::where('email', '=', $request->get('email'))->get();
 
-        $user = User::where('email','=',$request->get('email'))->get();
+        $user->password = $request->password;
 
-        $user->password=$request->password;
-
-        $newData=[
+        $newData = [
             'password' => Hash::make($request->input('password')),
         ];
 
         $user['0']->update($newData);
 
         //$user->update($request->all());
+    }
+
+    public function showFollowing()
+    {
+        return response()->json(\auth()->user()->followingProjects);
     }
 }
