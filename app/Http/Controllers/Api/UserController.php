@@ -111,4 +111,9 @@ class UserController extends Controller
     {
         return response()->json(\auth()->user()->followingProjects);
     }
+
+    public function showRaising()
+    {
+        return response()->json(\auth()->user()->raisingProjects);
+    }
 }
