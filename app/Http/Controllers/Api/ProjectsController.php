@@ -64,13 +64,14 @@ class ProjectsController extends Controller
             'rating' => 'required',
         ]);
         Comment::create([
-            'user_id' => 1,
+            'user_id' => auth('api')->user()->id,
             'project_id' => $request->input('project_id'),
             'rating' => $request->input('rating'),
             'comment' => $request->input('comment'),
         ]);
         return response()->json([
             'success' => true,
+            'user' => auth('api')->user(),
         ]);
     }
 }
