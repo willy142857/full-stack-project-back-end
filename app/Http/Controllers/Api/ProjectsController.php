@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Resources\ProjectResource;
 use App\Project;
+use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -51,5 +52,25 @@ class ProjectsController extends Controller
     public function destroy(Project $project)
     {
         //
+    }
+
+
+    public function comment(Request $request)
+    {
+        $this->validate($request, [
+            'username' => 'required|string',
+            'comment' => 'required|string',
+            'project_id' => 'required',
+            'rating' => 'required',
+        ]);
+        Comment::create([
+            'user_id' => 1,
+            'project_id' => $request->input('project_id'),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment'),
+        ]);
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }
