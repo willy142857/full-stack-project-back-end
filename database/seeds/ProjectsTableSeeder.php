@@ -46,6 +46,8 @@ class ProjectsTableSeeder extends Seeder
             ]);
         }
         foreach (range(1, TOTAL) as $index) {
+            $startAt = now()->subDays(rand(30, 400));
+            $endAt = now()->addDays(rand(30, 200));
             Project::create([
                 'fundraiser' => $faker->name,
                 'email' => $faker->email,
@@ -53,32 +55,32 @@ class ProjectsTableSeeder extends Seeder
                 'category_id' => rand(1, 15),
                 'brief' => $faker->realText(rand(10, 20)),
                 'description' => $faker->realText(rand(10, 100)),
-                'started_at' => now()->subDays(TOTAL - $index * 8),
-                'ended_at' => now()->addDays(rand(30, 600)),
-                'curr_amount' => rand(1000, 99999999),
-                'goal_amount' => rand(100000, 99999999),
+                'started_at' => $startAt,
+                'ended_at' => $endAt,
+                'curr_amount' => rand(100, 9999999) * 10,
+                'goal_amount' => rand(10000, 9999999) * 10,
                 'relative_web' => $faker->url,
                 'backer' => rand(0, 9999),
             ]);
             foreach (range(1, rand(1, 5)) as $i) {
                 Feedback::create([
                     'project_id' => $index,
-                    'date' => now()->addDays(rand(600, 1000)),
-                    'price' => rand(100, 99999),
+                    'date' => $endAt->addDays(rand(10, 100)),
+                    'price' => rand(10, 9999) * 10,
                     'description' => $faker->realText(rand(10, 50)),
                     'backer' => rand(0, 999),
                 ]);
             }
 
             foreach (range(1, rand(1, 5)) as $i) {
-                $date = now()->addDays(rand(30, 600));
+                $date = $startAt->addDays(rand(0, 15));
                 Comment::create([
-                    'user_id' => 1,
+                    'user_id' => rand(1, 100),
                     'project_id' => $index,
                     'rating' => rand(1, 5),
                     'comment' => $faker->realText(rand(10, 50)),
                     'created_at' => $date,
-                    'updated_at' => $date->addDays(rand(0, 30)),
+                    'updated_at' => $date->addDays(rand(0, 15)),
                 ]);
             }
         }
