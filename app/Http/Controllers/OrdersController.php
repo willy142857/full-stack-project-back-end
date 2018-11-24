@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Following;
+use App\Project;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -13,7 +15,13 @@ class OrdersController extends Controller
      */
     public function index()
     {
-        return view('orders.index');
+        $following_projects = Following::orderBy('created_at', 'DESC')->get();
+        $project = Project::where('id', '=', $following_projects->get('project'))->get();
+
+        $data = [
+            'following_projects' => $following_projects,
+        ];
+        return view('orders.index',$data);
     }
 
     /**
