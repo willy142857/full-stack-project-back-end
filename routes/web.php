@@ -35,13 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::delete('projects/{project}', 'ProjectsController@destroy')->name('projects.destroy');
 
-    Route::get('users/index', 'UsersController@index')->name('users.index');
 
-    Route::get('users/create', 'UsersController@create')->name('users.create');
-
-    Route::get('orders/index', 'OrdersController@index')->name('orders.index');
-
-    Route::get('orders/create', 'OrdersController@create')->name('orders.create');
 });
 
 Auth::routes();
