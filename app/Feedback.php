@@ -19,4 +19,9 @@ class Feedback extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+    public function followingUsers()
+    {
+        return $this->belongsToMany(User::class,'following_project_user','feedback_id','user_id');
+    }
 }
