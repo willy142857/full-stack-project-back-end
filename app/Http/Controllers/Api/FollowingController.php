@@ -16,7 +16,9 @@ class FollowingController extends Controller
      */
     public function index()
     {
-        //
+        $followingprojects = Following::where('user_id', auth()->id())->orderBy('project_id', 'ASC')->get();
+
+        return response()->json($followingprojects);
     }
 
     /**
