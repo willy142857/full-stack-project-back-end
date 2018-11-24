@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feedback;
 use App\Following;
 use App\Project;
 use Illuminate\Http\Request;
@@ -62,9 +63,19 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Following $following_projects)
     {
-        //
+        $categories = Category::all();
+        $feedbacks = Feedback::where('id', '=', $following_projects->get('feedback'))->get();
+        $project = Project::where('id', '=', $following_projects->get('project'))->get();
+
+        $data = [
+            'project' => $project,
+            'categories' => $categories,
+            'feedbacks' => $feedbacks,
+        ];
+
+        return view('products.edit', $data);
     }
 
     /**
