@@ -37,11 +37,19 @@ Route::middleware('auth')->group(function () {
 
     Route::get('users/index', 'UsersController@index')->name('users.index');
 
-    Route::get('users/create', 'UsersController@create')->name('users.create');
+    Route::get('users/{user}/edit', 'UsersController@edit')->name('users.edit');
+
+    Route::patch('users/{user}', 'UsersController@update')->name('users.update');
+
+    Route::delete('users/{user}', 'UsersController@destroy')->name('users.destroy');
 
     Route::get('orders/index', 'OrdersController@index')->name('orders.index');
 
-    Route::get('orders/create', 'OrdersController@create')->name('orders.create');
+    Route::get('orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
+
+    Route::patch('orders/{order}', 'OrdersController@update')->name('orders.update');
+
+    Route::delete('orders/{order}', 'OrdersController@destroy')->name('orders.destroy');
 });
 
 Auth::routes();
