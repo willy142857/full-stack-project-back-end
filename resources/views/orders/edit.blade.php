@@ -65,21 +65,17 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                    <div class="form-group">
+                                        <label for="price">方案</label>
+                                        <input type="number" class="form-control" id="feedback_name" name="feedback_name" placeholder="請輸入方案" value="{{ old('feedback_name', $feedback->id) }}">
+                                    </div>
                                 <div class="form-group">
                                     <label for="price">價格</label>
-                                    <input type="number" class="form-control" id="price" name="price" placeholder="請輸入價格" value="{{ old('price', $project->price) }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="unit">單位</label>
-                                    <input type="text" class="form-control" id="unit" name="unit" placeholder="請輸入單位" value="{{ old('unit', $project->unit) }}">
+                                    <input type="number" class="form-control" id="price" name="price" placeholder="請輸入價格" value="{{ old('price', $feedback->price) }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="description">描述</label>
                                     <textarea class="form-control" id="description" rows="5" name="description" placeholder="請輸入描述">{{ old('description', $project->description) }}</textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cover">產品圖</label>
-                                    <input type="file" id="cover">
                                 </div>
                             </div>
                             <!-- /.box-body -->
