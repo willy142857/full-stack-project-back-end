@@ -6,7 +6,7 @@ use App\Feedback;
 use App\Project;
 use Illuminate\Database\Seeder;
 
-define('TOTAL', 50);
+
 
 class ProjectsTableSeeder extends Seeder
 {
@@ -45,7 +45,7 @@ class ProjectsTableSeeder extends Seeder
                 'name' => $name,
             ]);
         }
-        foreach (range(1, TOTAL) as $index) {
+        foreach (range(1, 50) as $index) {
             $startAt = now()->subDays(rand(30, 400));
             $endAt = now()->addDays(rand(30, 200));
             Project::create([
