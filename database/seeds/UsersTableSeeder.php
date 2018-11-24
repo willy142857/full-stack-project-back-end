@@ -4,7 +4,6 @@ use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-define('TOTAL', 100);
 
 class UsersTableSeeder extends Seeder
 {
@@ -17,7 +16,7 @@ class UsersTableSeeder extends Seeder
     {
         $faker = \Faker\Factory::create('zh_TW');
 
-        foreach (range(1, TOTAL) as $index) {
+        foreach (range(1, 100) as $index) {
             $updatedAt = now()->subDays(rand(0, 500));
             User::create([
                 'name' => $faker->name,
