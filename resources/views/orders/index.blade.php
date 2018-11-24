@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 
-@section('title', '商品列表')
+@section('title', '訂單列表')
 
 @section('content')
     <!-- Content Wrapper. Contains page content -->
@@ -9,12 +9,12 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                商品管理
+                訂單管理
                 <small></small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> 商品管理</a></li>
-                <li class="active">商品列表</li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> 訂單管理</a></li>
+                <li class="active">訂單列表</li>
             </ol>
         </section>
 
@@ -29,7 +29,7 @@
                 <div class="col-md-12">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">全站商品一覽表</h3>
+                            <h3 class="box-title">全站訂單一覽表</h3>
 
                             <div class="box-tools">
                                 <a class="btn btn-success btn-sm" href="{{ route('products.create') }}">新增商品</a>
@@ -40,9 +40,10 @@
                             <table class="table table-bordered">
                                 <tr>
                                     <th class="text-center" style="width: 10px;">#</th>
-                                    <th class="text-center">名稱</th>
-                                    <th class="text-center" style="width: 250px">分類</th>
-                                    <th class="text-center" style="width: 120px">價格</th>
+                                    <th class="text-center">訂單人</th>
+                                    <th class="text-center" style="width: 250px">訂單商品</th>
+                                    <th class="text-center" style="width: 120px">訂單方案</th>
+                                    <th class="text-center" style="width: 250px">訂單價格</th>
                                     <th class="text-center" style="width: 120px">管理功能</th>
                                 </tr>
                                 @foreach ($products as $product)
