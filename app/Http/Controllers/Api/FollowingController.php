@@ -41,7 +41,10 @@ class FollowingController extends Controller
     {
         Following::create([
             'user_id' => auth()->id(),
-            'project_id' => $id,
+            'feedback_id' => $id,
+        ]);
+        return response()->json([
+            'success' => true,
         ]);
     }
 
@@ -88,8 +91,10 @@ class FollowingController extends Controller
     public function destroy($id)
     {
         Following::where('user_id', auth()->id())
-            ->where('project_id', $id)
+            ->where('feedback_id', $id)
             ->delete();
-
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }

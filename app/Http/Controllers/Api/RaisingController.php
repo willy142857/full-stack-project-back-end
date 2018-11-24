@@ -40,6 +40,10 @@ class RaisingController extends Controller
             'user_id' => auth()->id(),
             'project_id' => $id,
         ]);
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 
     /**
@@ -87,5 +91,9 @@ class RaisingController extends Controller
         Raising::where('user_id', auth()->id())
             ->where('project_id', $id)
             ->delete();
+
+        return response()->json([
+            'success' => true,
+        ]);
     }
 }
