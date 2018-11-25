@@ -41,22 +41,23 @@
                                     <th class="text-center" style="width: 250px">生日</th>
                                     <th class="text-center" style="width: 120px">管理功能</th>
                                 </tr>
-                                @foreach ($users as $user)
-                                    <tr>
-                                        <td>{{ $user->id }}.</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->category->name }}</td>
-                                        <td>{{ $user->price }} 元/{{ $user->unit }}</td>
-                                        <td class="text-center">
-                                            <a href="{{ route('products.edit', $user->id) }}" class="btn btn-xs btn-primary">編輯</a>
-                                            <form action="{{ route('products.destroy', $user->id) }}" method="post" style="display: inline-block">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-xs btn-danger">刪除</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
+                                {{--@foreach ($users as $user)--}}
+                                    {{--<tr>--}}
+                                        {{--<td>{{ $user->id }}.</td>--}}
+                                        {{--<td>{{ $user->name }}</td>--}}
+                                        {{--<td>{{ $user->email }}</td>--}}
+                                        {{--<td>{{ $user->sex }}</td>--}}
+                                        {{--<td>{{ $user->birth }}</td>--}}
+                                        {{--<td class="text-center">--}}
+                                            {{--<a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-primary">編輯</a>--}}
+                                            {{--<form action="{{ route('users.destroy', $user->id) }}" method="post" style="display: inline-block">--}}
+                                                {{--@csrf--}}
+                                                {{--@method('DELETE')--}}
+                                                {{--<button type="submit" class="btn btn-xs btn-danger">刪除</button>--}}
+                                            {{--</form>--}}
+                                        {{--</td>--}}
+                                    {{--</tr>--}}
+                                {{--@endforeach--}}
                             </table>
                         </div>
                         <!-- /.box-body -->
