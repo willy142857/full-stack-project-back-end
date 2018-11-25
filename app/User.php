@@ -53,6 +53,11 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
+    public function followingFeedbacks()
+    {
+        return $this->belongsToMany(Feedback::class,'following_project_user','user_id','feedback_id');
+    }
+
     public function followingProjects()
     {
         return $this->belongsToMany(Project::class,'following_project_user','user_id','project_id');
