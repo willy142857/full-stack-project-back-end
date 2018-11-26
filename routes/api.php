@@ -34,8 +34,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('profile', 'Api\UserController@index');
     Route::put('profile', 'Api\UserController@update');
     Route::get('profile/projects', 'Api\UserController@showFollowing');
-    Route::get('profile/feedbacks', 'Api\UserController@showFollowingFeedbacks');
+    Route::get('projects/{project}/feedbacks', 'Api\UserController@showFollowingFeedbacks');
     Route::get('profile/raisingProjects', 'Api\UserController@showRaising');
+    Route::get('profile/raisingProjectFeedBacks', 'Api\ProjectsController@showFeedback');
     Route::get('following/index', 'Api\FollowingController@index');
     Route::post('following/create', 'Api\FollowingController@store');
     Route::post('raising/create', 'Api\RaisingController@store');

@@ -54,6 +54,13 @@ class ProjectsController extends Controller
         //
     }
 
+    public function showFeedback(Project $project)
+    {
+        $feedbacks = Feedback::where('project_id', '=', $project->get('id'))->get();
+
+        return response()->json($feedbacks);
+    }
+
 
     public function comment(Request $request)
     {
