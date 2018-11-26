@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Feedback;
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\FeedbackResource;
 use App\Project;
+use App\Following;
 use App\Comment;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -36,6 +39,9 @@ class ProjectsController extends Controller
     {
         ProjectResource::withoutWrapping();
         return new ProjectResource($project);
+//        $project->feedbacks = $project->feedbacks()->get();
+//        $project->comments = $project->comments()->get();
+//        return response()->json($project);
     }
 
     public function edit(Project $project)
@@ -68,6 +74,20 @@ class ProjectsController extends Controller
             'project_id' => $request->input('project_id'),
             'rating' => $request->input('rating'),
             'comment' => $request->input('comment'),
+        ]);
+        return response()->json([
+            'success' => true,
+            'user' => auth('api')->user(),
+        ]);
+    }
+
+    public function orderfeedback(Request $request)
+    {
+        Following::create([
+            // 'user_id' => 1,
+            'user_id' => auth('api')->user()->id,
+            'project_id' => $request->input('project_id'),
+            'feedback_id' => $request->input('feedback_id'),
         ]);
         return response()->json([
             'success' => true,
