@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Feedback;
+use App\Http\Requests\ProjectRequest;
 use App\Http\Resources\ProjectResource;
 use App\Http\Resources\FeedbackResource;
 use App\Project;
 use App\Following;
 use App\Comment;
+use App\Raising;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -26,13 +28,31 @@ class ProjectsController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
+        $project = Project::create($request->all());
+
+        $feedbacks = $request->input('feedbacks');
+
+        foreach ($feedbacks as $feedback) {
+
+            Feedback::create([
+                'project_id' => $project->id,
+                'price' => $feedback['price'] ,
+                'date' => $feedback['date'],
+                'description' => $feedback['description'],
+            ]);
+        }
+
+        Raising::create([
+           'user_id' => auth('api')->user()->id,
+            'project_id' => $project->id,
         ]);
-        Project::create($request->all());
+
+        return response()->json([
+            'success' => true,
+            'user' => auth('api')->user(),
+        ]);
     }
 
     public function show(Project $project)
@@ -50,9 +70,23 @@ class ProjectsController extends Controller
         return response()->json($project);
     }
 
-    public function update(Request $request, Project $project)
+    public function update(ProjectRequest $request, Project $project)
     {
         $project->update($request->all());
+
+        $feedbacks = $request->input('feedbacks');
+
+        foreach ($feedbacks as $feedback) {
+
+            
+            Feedback::create([
+                'project_id' => $project->id,
+                'price' => $feedback['price'] ,
+                'date' => $feedback['date'],
+                'description' => $feedback['description'],
+            ]);
+        }
+
     }
 
     public function destroy(Project $project)
