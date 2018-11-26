@@ -9,6 +9,7 @@ class Feedback extends Model
     protected $table = 'feedbacks';
 
     protected $fillable = [
+        'project_id',
         'date',
         'price',
         'description',
