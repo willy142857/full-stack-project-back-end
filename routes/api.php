@@ -23,7 +23,9 @@ Route::get('projects/{project}', 'Api\ProjectsController@show');
 Route::get('categories', 'Api\CategoryController@index');
 
 Route::post('login', 'Api\AuthController@login');
+
 Route::post('register', 'Api\AuthController@register');
+
 Route::post('retrievepassword', 'Api\EmailController@sendMail');
 Route::patch('resetpassword', 'Api\UserController@resetPassword');
 Route::post('comment', 'Api\ProjectsController@comment');
@@ -31,7 +33,9 @@ Route::post('feedback', 'Api\ProjectsController@orderfeedback');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('projects', 'Api\ProjectsController@store');
+    Route::get('projects/{project}/edit', 'Api\ProjectsController@edit');
     Route::put('projects/{project}', 'Api\ProjectsController@update');
+
     Route::get('profile', 'Api\UserController@index');
     Route::put('profile', 'Api\UserController@update');
     Route::get('profile/projects', 'Api\UserController@showFollowing');
