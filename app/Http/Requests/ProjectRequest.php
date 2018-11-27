@@ -26,7 +26,7 @@ class ProjectRequest extends FormRequest
         return [
             'fundraiser' => 'required|string|max:20',
             'email' => 'required|string|email|max:60',
-            'name' => 'required|string|max:100|unique:projects',
+            'name' => 'required|string|max:100',
             'category_id' => 'required|integer',
             'brief' => 'required|string|max:255',
             'started_at' => 'required',
