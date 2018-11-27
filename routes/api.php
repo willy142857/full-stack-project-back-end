@@ -31,13 +31,12 @@ Route::post('feedback', 'Api\ProjectsController@orderfeedback');
 
 Route::middleware('auth:api')->group(function () {
     Route::post('projects', 'Api\ProjectsController@store');
-    Route::put('projects/{project}', 'Api\ProjectsContsroller@update');
+    Route::put('projects/{project}', 'Api\ProjectsController@update');
     Route::get('profile', 'Api\UserController@index');
     Route::put('profile', 'Api\UserController@update');
     Route::get('profile/projects', 'Api\UserController@showFollowing');
     Route::get('profile/feedbacks', 'Api\UserController@showFollowingFeedbacks');
     Route::get('profile/raisingProjects', 'Api\UserController@showRaising');
-    Route::get('following/index', 'Api\FollowingController@index');
     Route::post('following/create', 'Api\FollowingController@store');
     Route::post('raising/create', 'Api\RaisingController@store');
     Route::delete('following', 'Api\FollowingController@destroy');
