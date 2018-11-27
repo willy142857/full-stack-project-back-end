@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('users/{user}/edit', 'UsersController@edit')->name('users.edit');
 
+    Route::post('users', 'UsersController@store')->name('users.store');
+
     Route::patch('users/{user}', 'UsersController@update')->name('users.update');
 
     Route::delete('users/{user}', 'UsersController@destroy')->name('users.destroy');
@@ -46,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('orders/index', 'OrdersController@index')->name('orders.index');
 
     Route::get('orders/{order}/edit', 'OrdersController@edit')->name('orders.edit');
+
+    Route::post('orders', 'OrdersController@store')->name('orders.store');
 
     Route::patch('orders/{order}', 'OrdersController@update')->name('orders.update');
 
