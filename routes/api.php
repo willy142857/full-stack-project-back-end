@@ -28,8 +28,7 @@ Route::post('register', 'Api\AuthController@register');
 
 Route::post('retrievepassword', 'Api\EmailController@sendMail');
 Route::patch('resetpassword', 'Api\UserController@resetPassword');
-Route::post('comment', 'Api\ProjectsController@comment');
-Route::post('feedback', 'Api\ProjectsController@orderfeedback');
+
 
 Route::middleware('auth:api')->group(function () {
     Route::post('projects', 'Api\ProjectsController@store');
@@ -48,6 +47,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('logout', 'Api\AuthController@logout');
     Route::post('refresh', 'Api\AuthController@refresh');
     Route::post('orders', 'Api\OrderController@store');
-
+    Route::post('comment', 'Api\ProjectsController@comment');
+    Route::post('feedback', 'Api\ProjectsController@orderfeedback');
 });
 
