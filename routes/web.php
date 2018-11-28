@@ -22,6 +22,10 @@ Route::get('/index', function() {
 
 Route::middleware('auth')->group(function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
+    
+    Route::get('newMail', 'Api\EmailController@index')->name('emails.index');
+
+    Route::post('sendNewMail', 'Api\EmailController@sendSubscriptionMail')->name('emails.sendSub');
 
     Route::get('projects/index', 'ProjectsController@index')->name('projects.index');
 
