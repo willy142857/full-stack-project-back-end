@@ -12,4 +12,17 @@ class Following extends Model
         'project_id',
         'feedback_id'
     ];
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class);
+    }
+    public function feedback()
+    {
+        return $this->belongsTo(Feedback::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

@@ -1,6 +1,5 @@
 @extends('layouts.master')
 
-
 @section('title', '訂單列表')
 
 @section('content')
@@ -20,41 +19,43 @@
 
         <!-- Main content -->
         <section class="content container-fluid">
-
-            <!--------------------------
-              | Your Page Content Here |
-              -------------------------->
-
             <div class="row">
                 <div class="col-md-12">
                     <div class="box box-primary">
+                        <!-- box-header -->
                         <div class="box-header with-border">
                             <h3 class="box-title">全站訂單一覽表</h3>
-
                             <div class="box-tools">
-                                <a class="btn btn-success btn-sm" href="{{ route('products.create') }}">新增商品</a>
+                                <a class="btn btn-success btn-sm" href="#">新增</a>
                             </div>
                         </div>
                         <!-- /.box-header -->
+                        {{--TODO:完成列表--}}
                         <div class="box-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th class="text-center" style="width: 10px;">#</th>
-                                    <th class="text-center">訂單人</th>
-                                    <th class="text-center" style="width: 250px">訂單商品</th>
-                                    <th class="text-center" style="width: 120px">訂單方案</th>
-                                    <th class="text-center" style="width: 250px">訂單價格</th>
-                                    <th class="text-center" style="width: 120px">管理功能</th>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>訂單人</th>
+                                    <th>聯絡方式</th>
+                                    <th>下訂商品</th>
+                                    <th>下訂方案</th>
+                                    <th>價錢</th>
+                                    <th>管理功能</th>
                                 </tr>
-                                @foreach ($products as $product)
+                                </thead>
+                                <tbody>
+                                @foreach ($following_projects as $following_project)
                                     <tr>
-                                        <td>{{ $product->id }}.</td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->category->name }}</td>
-                                        <td>{{ $product->price }} 元/{{ $product->unit }}</td>
+                                        <td>{{ $following_project->id }}.</td>
+                                        <td>{{ $following_project->user->name }}</td>
+                                        <td>{{ $following_project->user->email }}</td>
+                                        <td>{{ $following_project->project->name }}</td>
+                                        <td>{{ $following_project->feedback->description}}</td>
+                                        <td>{{ $following_project->feedback->price }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('products.edit', $product->id) }}" class="btn btn-xs btn-primary">編輯</a>
-                                            <form action="{{ route('products.destroy', $product->id) }}" method="post" style="display: inline-block">
+                                            {{--<a href="{{ route('orders.edit', $following_project->id) }}" class="btn btn-xs btn-primary">編輯</a>--}}
+                                            <form action="{{ route('orders.destroy', $following_project->id) }}" method="post" style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-xs btn-danger">刪除</button>
@@ -62,18 +63,12 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->
-                        <div class="box-footer clearfix">
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
                     </div>
                     <!-- /.box -->
                 </div>
@@ -85,4 +80,5 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
+
 @endsection

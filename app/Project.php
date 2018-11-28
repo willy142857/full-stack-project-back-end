@@ -47,4 +47,8 @@ class Project extends Model
     {
         return $this->belongsToMany(User::class,'following_project_user','project_id','user_id');
     }
+    public function followings()
+    {
+        return $this->hasMany(Following::class);
+    }
 }
