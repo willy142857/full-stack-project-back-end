@@ -34,7 +34,8 @@ Route::middleware('auth:api')->group(function () {
     Route::post('projects', 'Api\ProjectsController@store');
     Route::get('projects/{project}/edit', 'Api\ProjectsController@edit');
     Route::put('projects/{project}', 'Api\ProjectsController@update');
-
+    Route::post('sendSubscriberMail', 'Api\EmailController@sendSubscriptionMail');
+    Route::post('subscribe', 'Api\SubscribersController@add');
     Route::get('profile', 'Api\UserController@index');
     Route::put('profile', 'Api\UserController@update');
     Route::get('profile/projects', 'Api\UserController@showFollowing');
