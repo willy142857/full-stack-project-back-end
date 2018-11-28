@@ -11,9 +11,9 @@ class SubscribersController extends Controller
     public function add(Request $request)
     {
         $data = $request->all();
-        $this->validate($request, [
-            'email' => 'required',
-        ]);
         Subscriber::create($data);
+        return response()->json($request);
     }
+
+
 }
