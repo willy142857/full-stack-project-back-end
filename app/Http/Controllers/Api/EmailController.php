@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -33,5 +34,35 @@ class EmailController extends Controller
         });
 
         return response()->json(['message' => 'Email successfully send']);
+    }
+
+    public function sendSubscriptionMail(Request $request)
+    {
+
+
+        $data = [
+            'title' => '訂閱者專屬電子報',
+            'content'=>$request->get('content'),
+            'email',
+        ];
+
+
+        foreach (Subscriber::all() as $subscriber)
+        {
+            $data['email']=$subscriber['email'];
+            Mail::send('emails.subscriberMail', $data, function ($message)use ($subscriber) {
+                $message->to($subscriber['email']);
+                $message->subject('訂閱者專屬電子報');
+            });
+        }
+
+
+        return  view('emails.writeNewMail');
+    }
+
+    //  show a new subscription mail view
+    public function index()
+    {
+        return view('emails.writeNewMail');
     }
 }
