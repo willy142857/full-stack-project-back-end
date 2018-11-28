@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Resources\UserResource;
 use App\Project;
 use App\User;
 use Illuminate\Http\Request;
@@ -14,7 +15,7 @@ class UserController extends Controller
     public function index()
     {
         //$user = User::findOrFail(\auth('api')->id());
-        return response()->json(\auth('api')->user());
+        return new UserResource(\auth('api')->user());
     }
 
     /**
