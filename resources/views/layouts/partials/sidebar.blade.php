@@ -43,6 +43,7 @@
                     <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i>商品列表</a></li>
                     <li><a href="{{ route('users.index') }}"><i class="fa fa-circle-o"></i>會員列表</a></li>
                     <li><a href="{{ route('orders.index') }}"><i class="fa fa-circle-o"></i>訂單列表</a></li>
+                    <li><a href="{{ route('emails.index') }}"><i class="fa fa-circle-o"></i>發送電子報</a></li>
                 </ul>
             </li>
             {{--TODO: multilevel example, remove before demo--}}

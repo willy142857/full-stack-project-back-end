@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Feedback;
 use App\Following;
 use App\Project;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -17,8 +18,7 @@ class OrdersController extends Controller
     public function index()
     {
         $following_projects = Following::orderBy('created_at', 'DESC')->get();
-        $project = Project::where('id', '=', $following_projects->get('project'))->get();
-
+//        $project = Project::where('id', '=', $following_projects->get('project'))->get();
         $data = [
             'following_projects' => $following_projects,
         ];

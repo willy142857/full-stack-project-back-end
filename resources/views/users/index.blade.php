@@ -25,21 +25,25 @@
                         <!-- box-header -->
                         <div class="box-header with-border">
                             <h3 class="box-title">全站使用者一覽表</h3>
+                            <div class="box-tools">
+                                <a class="btn btn-success btn-sm" href="#">新增</a>
+                            </div>
                         </div>
                         <!-- /.box-header -->
                         {{--TODO:完成列表--}}
                         <div class="box-body">
                             <table id="example1" class="table table-bordered table-striped">
-                                <thread>
-                                    <tr>
-                                        <th class="text-center" style="width: 10px;">#</th>
-                                        <th class="text-center">名稱</th>
-                                        <th class="text-center" style="width: 250px">信箱</th>
-                                        <th class="text-center" style="width: 250px">性別</th>
-                                        <th class="text-center" style="width: 250px">生日</th>
-                                        <th class="text-center" style="width: 120px">管理功能</th>
-                                    </tr>
-                                </thread>
+                                <thead>
+                                <tr class="text-center">
+                                    <th>#</th>
+                                    <th>使用者名稱</th>
+                                    <th>聯絡信箱</th>
+                                    <th>性別</th>
+                                    <th>出生日期</th>
+                                    <th>管理功能</th>
+                                </tr>
+                                </thead>
+                                <tbody>
                                 @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}.</td>
@@ -57,6 +61,9 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                </tbody>
+                                <tfoot>
+                                </tfoot>
                             </table>
                         </div>
                         <!-- /.box-body -->
