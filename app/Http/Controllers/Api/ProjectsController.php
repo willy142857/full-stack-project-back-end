@@ -29,7 +29,13 @@ class ProjectsController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $project = Project::create($request->all());
+        $project = Project::create($request->except('img_path'));
+
+        if($request->input('img_path'))
+        {
+            file_put_contents(storage_path('app/public/project/project' . $project->id . '.jpg'),
+                file_get_contents($request->input('img_path')));
+        }
 
         $feedbacks = $request->input('feedbacks');
 
@@ -37,14 +43,14 @@ class ProjectsController extends Controller
 
             Feedback::create([
                 'project_id' => $project->id,
-                'price' => $feedback['price'] ,
+                'price' => $feedback['price'],
                 'date' => $feedback['date'],
                 'description' => $feedback['description'],
             ]);
         }
 
         Raising::create([
-           'user_id' => auth('api')->user()->id,
+            'user_id' => auth('api')->user()->id,
             'project_id' => $project->id,
         ]);
 
@@ -56,6 +62,16 @@ class ProjectsController extends Controller
 
     public function show(Project $project)
     {
+        foreach ($project->comments as $comment) {
+            $t = file_exists(storage_path('app/public/user/user' . $comment->user_id . '.jpg'));
+
+            if ($t) {
+                $comment->profile_URL = asset('storage/user/user' . $comment->user_id . '.jpg');
+            } else {
+                $comment->profile_URL = asset('storage/user/default.jpg');
+            }
+        }
+
         return new ProjectResource($project);
 //        $project->feedbacks = $project->feedbacks()->get();
 //        $project->comments = $project->comments()->get();
@@ -100,8 +116,6 @@ class ProjectsController extends Controller
     }
 
 
-
-
     public function comment(Request $request)
     {
         $this->validate($request, [
@@ -129,6 +143,14 @@ class ProjectsController extends Controller
             'project_id' => $request->input('project_id'),
             'feedback_id' => $request->input('feedback_id'),
         ]);
+        $feedback_id = $request->input('feedback_id');
+        $data = Feedback::find($feedback_id);
+        $data->backer = $data->backer + 1;
+        $data->save();
+        $project = $data->project;
+        $project->backer = $project->backer + 1;
+        $project->curr_amount = $project->curr_amount + $data->price;
+        $project->save();
         return response()->json([
             'success' => true,
             'user' => auth('api')->user(),

@@ -10,6 +10,10 @@ class SubscribersController extends Controller
 {
     public function add(Request $request)
     {
+        $this->validate($request, [
+            'email'=>'email|required|unique:subscribers'
+        ]);
+
         $data = $request->all();
         Subscriber::create($data);
         return response()->json($request);

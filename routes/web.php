@@ -27,6 +27,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('sendNewMail', 'Api\EmailController@sendSubscriptionMail')->name('emails.sendSub');
 
+    Route::post('sendProjectEndMail', 'Api\EmailController@sendEndProjectMail')->name('emails.sendEnd');
+
     Route::get('projects/index', 'ProjectsController@index')->name('projects.index');
 
     Route::get('projects/create', 'ProjectsController@create')->name('projects.create');

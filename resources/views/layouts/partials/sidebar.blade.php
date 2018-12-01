@@ -46,12 +46,15 @@
                     <li><a href="{{ route('emails.index') }}"><i class="fa fa-circle-o"></i>發送電子報</a></li>
                 </ul>
             </li>
+            <li>
+                <form action="{{ route('emails.sendEnd') }}" method="post">
+                    @csrf
+                    <button style="margin-left: 20px" type="submit" class="btn btn-primary">發送到期專案通知信</button>
+                </form>
+            </li>
             {{--TODO: multilevel example, remove before demo--}}
 
-            <li class="header">LABELS</li>
-            <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-            <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+
         </ul>
     </section>
     <!-- /.sidebar -->

@@ -9,13 +9,23 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
     public function index()
     {
-        //$user = User::findOrFail(\auth('api')->id());
-        return new UserResource(\auth('api')->user());
+        $user = \auth('api')->user();
+
+        $t = file_exists(storage_path('app/public/user/user' . \auth('api')->id() . '.jpg'));
+
+        if ($t) {
+            $user->profile_URL = asset('storage/user/user' . \auth('api')->id() . '.jpg');
+        } else {
+            $user->profile_URL = null;
+        }
+
+        return new UserResource($user);
     }
 
     /**
@@ -73,7 +83,17 @@ class UserController extends Controller
         $user = \auth('api')->user();
         $user->update($request->all());
         $user->save();
+        if($request->input('photo'))
+        {
+            file_put_contents(storage_path('app/public/user/user' . \auth('api')->id() . '.jpg'),
+                file_get_contents($request->input('photo')));
+        }
+
         return response()->json($user);
+
+
+
+
     }
 
     /**

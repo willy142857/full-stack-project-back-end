@@ -89,4 +89,7 @@ class ProjectsController extends Controller
         $project->delete();
         return redirect(route('projects.index'));
     }
+
+
+
 }
