@@ -68,7 +68,7 @@ class ProjectsController extends Controller
             if ($t) {
                 $comment->profile_URL = asset('storage/user/user' . $comment->user_id . '.jpg');
             } else {
-                $comment->profile_URL = null;
+                $comment->profile_URL = asset('storage/user/default.jpg');
             }
         }
 
