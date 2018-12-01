@@ -14,6 +14,7 @@ class ProjectResource extends JsonResource
      */
     public function toArray($request)
     {
+        $imgUrl = 'app/public/project/project' . $this->id . '.jpg';
         return [
             'id' => $this->id,
             'fundraiser' => $this->fundraiser,
@@ -30,7 +31,8 @@ class ProjectResource extends JsonResource
             'description' => $this->description,
             'feedbacks' => FeedbackResource::collection($this->feedbacks),
             'comments' => CommentResource::collection($this->comments),
-            'img_path' => $this->img_path,
+            'img_path' => file_exists(storage_path($imgUrl)) ?
+                asset('storage/project/project' . $this->id . '.jpg') : null,
             'relative_web' => $this->relative_web,
         ];
     }
