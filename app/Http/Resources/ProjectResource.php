@@ -14,12 +14,14 @@ class ProjectResource extends JsonResource
      */
     public function toArray($request)
     {
+        $imgUrl = 'app/public/project/project' . $this->id . '.jpg';
         return [
             'id' => $this->id,
             'fundraiser' => $this->fundraiser,
             'email' => $this->email,
             'name' => $this->name,
             'category_id' => $this->category_id,
+            'category_name' => $this->category->name,
             'brief' => $this->brief,
             'started_at' => $this->started_at,
             'ended_at' => $this->ended_at,
@@ -29,7 +31,8 @@ class ProjectResource extends JsonResource
             'description' => $this->description,
             'feedbacks' => FeedbackResource::collection($this->feedbacks),
             'comments' => CommentResource::collection($this->comments),
-            'img_path' => $this->img_path,
+            'img_path' => file_exists(storage_path($imgUrl)) ?
+                asset('storage/project/project' . $this->id . '.jpg') : null,
             'relative_web' => $this->relative_web,
         ];
     }

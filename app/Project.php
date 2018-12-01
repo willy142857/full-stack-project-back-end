@@ -23,6 +23,10 @@ class Project extends Model
         'relative_web',
     ];
 
+    protected $dates = [
+        'ended_at',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
