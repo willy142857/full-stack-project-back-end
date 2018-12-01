@@ -43,9 +43,9 @@ class Project extends Model
         return $this->belongsToMany(User::class,'following_project_user','project_id','user_id');
     }
 
-    public function raisingUsers()
+    public function raisingUser()
     {
-        return $this->belongsToMany(User::class,'following_project_user','project_id','user_id');
+        return $this->belongsTo(User::class,'raising_user_id');
     }
     public function followings()
     {
