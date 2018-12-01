@@ -29,7 +29,13 @@ class ProjectsController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $project = Project::create($request->all());
+        $project = Project::create($request->except('img_path'));
+
+        if($request->input('img_path'))
+        {
+            file_put_contents(storage_path('app/public/project/project' . $project->id . '.jpg'),
+                file_get_contents($request->input('img_path')));
+        }
 
         $feedbacks = $request->input('feedbacks');
 

@@ -20,7 +20,7 @@ class UserController extends Controller
         $t = file_exists(storage_path('app/public/user/user' . \auth('api')->id() . '.jpg'));
 
         if ($t) {
-            $user->profile_URL = asset('storage/user' . \auth('api')->id() . '.jpg');
+            $user->profile_URL = asset('storage/user/user' . \auth('api')->id() . '.jpg');
         } else {
             $user->profile_URL = null;
         }
@@ -83,7 +83,6 @@ class UserController extends Controller
         $user = \auth('api')->user();
         $user->update($request->all());
         $user->save();
-
         if($request->input('photo'))
         {
             file_put_contents(storage_path('app/public/user/user' . \auth('api')->id() . '.jpg'),
