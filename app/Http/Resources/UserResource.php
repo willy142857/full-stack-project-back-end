@@ -9,7 +9,7 @@ class UserResource extends JsonResource
     /**
      * Transform the resource into an array.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return array
      */
     public function toArray($request)
@@ -20,12 +20,13 @@ class UserResource extends JsonResource
             'name' => $this->name,
             'phone' => $this->phone,
             'description' => $this->description,
-            'sex' =>$this->sex,
+            'sex' => $this->sex,
             'address' => $this->address,
             'birth' => $this->birth,
             'followingFeedbacks' => FeedbackResource::collection($this->followingFeedbacks),
             'followingProjects' => ProjectResource::collection($this->followingProjects),
             'raisingProjects' => ProjectResource::collection($this->raisingProjects),
+            'profile_URL' => $this->profile_URL,
         ];
     }
 }
