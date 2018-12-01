@@ -2615,7 +2615,7 @@ a:focus {
   height: 50px;
 }
 .products-list .product-info {
-  margin-left: 60px;
+  margin-left: 100px;
 }
 .products-list .product-title {
   font-weight: 600;
@@ -4974,4 +4974,9 @@ table.text-center th {
   .table-responsive > .table tr td {
     white-space: normal !important;
   }
+}
+
+#myBIG
+{
+    width: 100%
 }
