@@ -20,6 +20,7 @@ class ProjectResource extends JsonResource
             'email' => $this->email,
             'name' => $this->name,
             'category_id' => $this->category_id,
+            'category_name' => $this->category->name,
             'brief' => $this->brief,
             'started_at' => $this->started_at,
             'ended_at' => $this->ended_at,
