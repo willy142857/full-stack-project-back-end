@@ -105,7 +105,6 @@ class ProjectsController extends Controller
     public function comment(Request $request)
     {
         $this->validate($request, [
-            'username' => 'required|string',
             'comment' => 'required|string',
             'project_id' => 'required',
             'rating' => 'required',
