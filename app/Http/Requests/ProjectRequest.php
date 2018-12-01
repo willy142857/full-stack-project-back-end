@@ -33,7 +33,7 @@ class ProjectRequest extends FormRequest
             'ended_at' => 'required',
             'goal_amount' => 'required|integer',
             'description' => 'required|string',
-            'img_path' => 'required|string|max:255',
+            'img_path' => 'required|',
             'relative_web' => 'required|string|max:255',
             'feedbacks.*.price' => 'required|integer',
             'feedbacks.*.date' => 'required',
