@@ -19,6 +19,7 @@ class ExampleProjectTableSeeder extends Seeder
         Feedback::truncate();
 
         $faker = \Faker\Factory::create('zh_TW');
+
         $categories = [
             '音樂',
             '攝影',
@@ -36,6 +37,13 @@ class ExampleProjectTableSeeder extends Seeder
             '電影動畫',
             '插畫漫畫',
         ];
+
+        foreach ($categories as $name) {
+            Category::create([
+                'name' => $name,
+            ]);
+        }
+
         Project::create([
         'fundraiser' =>  '源源鋼藝 uanuan',
         'email' => $faker->email,
@@ -1264,7 +1272,7 @@ Wils Fabrik 相信品牌不僅是創作者，品牌對我們而言更像是一�
             'name' => 'ZEBRA TIGER | 顛覆傳統經營的服飾品牌',
             'category_id' =>7,
             'started_at' => '2018-11-01',
-            'ended_at' => '2018-12-31 ',
+            'ended_at' => '2018-12-31',
             'curr_amount' =>1640,
             'goal_amount' =>300000,
             'relative_web' => 'www.zeczec.com/projects/zebra-tiger?r=k2979470057',
@@ -2124,8 +2132,8 @@ Midan Tahrir 解放廣場。2011年1月25日，超過一萬五千名群眾，齊
             'email' => $faker->email,
             'name' => '【BEN&DRY】分享、討論台灣同志的日常',
             'category_id' =>11,
-            'started_at' => ' 2018-11-9',
-            'ended_at' => ' 2018-12-12',
+            'started_at' => '2018-11-9',
+            'ended_at' => '2018-12-12',
             'curr_amount' =>3595,
             'goal_amount' =>10000,
             'relative_web' => 'www.zeczec.com/projects/bendry?r=k2906470057',
@@ -2161,8 +2169,8 @@ Midan Tahrir 解放廣場。2011年1月25日，超過一萬五千名群眾，齊
             'email' => $faker->email,
             'name' => '街道的隱匿者｜當你用牠的眼睛看世界-流浪動物實境遊戲',
             'category_id' =>12,
-            'started_at' => ' 2018-10-23',
-            'ended_at' => ' 2018-12-25',
+            'started_at' => '2018-10-23',
+            'ended_at' => '2018-12-25',
             'curr_amount' =>459695,
             'goal_amount' =>700000,
             'relative_web' => 'www.zeczec.com/projects/once-reality-game?r=k2751470057',
@@ -2416,7 +2424,7 @@ Midan Tahrir 解放廣場。2011年1月25日，超過一萬五千名群眾，齊
             'name' => '台灣漫畫咸魚翻生行動《咸魚應援團SFXing》',
             'category_id' => 15,
             'started_at' => '2018-12-3 ',
-            'ended_at' => ' 2019-1-28',
+            'ended_at' => '2019-1-28',
             'curr_amount' =>0,
             'goal_amount' =>80000,
             'relative_web' => 'www.zeczec.com/projects/sfxing?r=k3084470057',
