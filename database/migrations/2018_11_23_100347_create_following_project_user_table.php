@@ -17,6 +17,10 @@ class CreateFollowingProjectUserTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('project_id');
+            $table->string('country');
+            $table->string('name');
+            $table->string('address');
+            $table->string('note')->default(null);
             $table->timestamps();
         });
     }
