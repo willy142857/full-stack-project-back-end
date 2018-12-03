@@ -51,4 +51,3 @@ Route::middleware('auth:api')->group(function () {
     Route::post('comment', 'Api\ProjectsController@comment');
     Route::post('feedback', 'Api\ProjectsController@orderfeedback');
 });
-

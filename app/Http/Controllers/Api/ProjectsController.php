@@ -138,6 +138,10 @@ class ProjectsController extends Controller
             'user_id' => auth('api')->user()->id,
             'project_id' => $request->input('project_id'),
             'feedback_id' => $request->input('feedback_id'),
+            'country' => $request->input('country'),
+            'name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'note' => $request->input('note')
         ]);
         $feedback_id = $request->input('feedback_id');
         $data = Feedback::find($feedback_id);
