@@ -1271,7 +1271,7 @@ Wils Fabrik 相信品牌不僅是創作者，品牌對我們而言更像是一�
             'email' => $faker->email,
             'name' => 'ZEBRA TIGER | 顛覆傳統經營的服飾品牌',
             'category_id' =>7,
-            'started_at' => '2018-11-01',
+            'started_at' => '2018-11-1',
             'ended_at' => '2018-12-31',
             'curr_amount' =>1640,
             'goal_amount' =>300000,
