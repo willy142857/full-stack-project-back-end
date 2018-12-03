@@ -9,6 +9,7 @@ class Project extends Model
     protected $table = 'projects';
     protected $fillable = [
         'fundraiser',
+        'raising_user_id',
         'email',
         'name',
         'category_id',

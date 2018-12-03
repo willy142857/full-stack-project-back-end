@@ -29,7 +29,8 @@ class ProjectsController extends Controller
 
     public function store(ProjectRequest $request)
     {
-        $project = Project::create($request->except('img_path'));
+        $user = auth('api')->user();
+        $project = Project::create(array_merge($request->except('img_path'), ['raising_user_id' => $user->id]));
 
         if($request->input('img_path'))
         {
@@ -49,14 +50,9 @@ class ProjectsController extends Controller
             ]);
         }
 
-        Raising::create([
-            'user_id' => auth('api')->user()->id,
-            'project_id' => $project->id,
-        ]);
-
         return response()->json([
             'success' => true,
-            'user' => auth('api')->user(),
+            'user' => $user,
         ]);
     }
 
@@ -112,7 +108,7 @@ class ProjectsController extends Controller
 
     public function destroy(Project $project)
     {
-        //
+
     }
 
 
