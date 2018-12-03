@@ -49,6 +49,7 @@ class ProjectsTableSeeder extends Seeder
             $startAt = now()->subDays(rand(30, 400));
             $endAt = now()->addDays(rand(30, 200));
             Project::create([
+                'raising_user_id' => rand(1, 100),
                 'fundraiser' => $faker->name,
                 'email' => $faker->email,
                 'name' => $faker->realText(rand(10, 12)),
