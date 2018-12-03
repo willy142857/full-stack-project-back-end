@@ -22,7 +22,7 @@ class UserController extends Controller
         if ($t) {
             $user->profile_URL = asset('storage/user/user' . \auth('api')->id() . '.jpg');
         } else {
-            $user->profile_URL = null;
+            $user->profile_URL = asset('storage/user/default.jpg');
         }
 
         return new UserResource($user);
