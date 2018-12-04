@@ -10,7 +10,11 @@ class Following extends Model
     protected $fillable = [
         'user_id',
         'project_id',
-        'feedback_id'
+        'feedback_id',
+        'country',
+        'name',
+        'address',
+        'note'
     ];
 
     public function project()
