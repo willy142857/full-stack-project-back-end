@@ -52,7 +52,7 @@
                                         <td>{{ $user->sex }}</td>
                                         <td>{{ $user->birth }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-primary">編輯</a>
+                                            {{--<a href="{{ route('users.edit', $user->id) }}" class="btn btn-xs btn-primary">編輯</a>--}}
                                             <form action="{{ route('users.destroy', $user->id) }}" method="post" style="display: inline-block">
                                                 @csrf
                                                 @method('DELETE')
