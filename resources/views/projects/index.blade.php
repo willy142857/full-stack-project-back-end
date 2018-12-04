@@ -26,7 +26,7 @@
             <div class="box-header with-border">
               <h3 class="box-title">全站募資計畫一覽表</h3>
                 <div class="box-tools">
-                  <a class="btn btn-success btn-sm" href="#">新增</a>
+                  <a class="btn btn-success btn-sm" href="{{ route('projects.create') }}">新增</a>
                 </div>
             </div>
             <!-- /.box-header -->
