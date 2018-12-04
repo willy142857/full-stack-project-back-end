@@ -44,6 +44,19 @@ class ExampleProjectTableSeeder extends Seeder
             ]);
         }
 
+        foreach (range(1, 30) as $index) {
+            $endAt = now()->addDays(rand(30, 200));
+            foreach (range(1, rand(1, 5)) as $i) {
+                Feedback::create([
+                    'project_id' => $index,
+                    'date' => $endAt->addDays(rand(10, 100)),
+                    'price' => rand(10, 9999) * 10,
+                    'description' => $faker->realText(rand(10, 50)),
+                    'backer' => rand(0, 999),
+                ]);
+            }
+        }
+
         Project::create([
             'raising_user_id' => rand(1, 100),
             'fundraiser' => '源源鋼藝 uanuan',
