@@ -42,7 +42,7 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized']);
         }
 
-        return $this->respondWithToken($token);
+        return $this->respondWithToken($token,$request->input('remember'));
     }
 
     public function me()
@@ -62,12 +62,20 @@ class AuthController extends Controller
         return $this->respondWithToken(auth('api')->refresh());
     }
 
-    protected function respondWithToken($token)
+    protected function respondWithToken($token, $remember)
     {
+        if($remember){
+            return response()->json([
+                'access_token' => $token,
+                'token_type' => 'bearer',
+                'expires_in' => auth('api')->factory()->getTTL() * 10
+            ]);
+        }
         return response()->json([
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'expires_in' => auth('api')->factory()->getTTL() * 4320
         ]);
+
     }
 }
