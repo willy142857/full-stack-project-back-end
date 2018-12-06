@@ -17,6 +17,7 @@ class ProjectResource extends JsonResource
         $imgUrl = 'app/public/project/project' . $this->id . '.jpg';
         return [
             'id' => $this->id,
+            'raising_user_id' => $this->raising_user_id,
             'fundraiser' => $this->fundraiser,
             'email' => $this->email,
             'name' => $this->name,
