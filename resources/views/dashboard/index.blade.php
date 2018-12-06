@@ -49,7 +49,7 @@
                             @foreach($recentProjects as $recentProject)
                             <li class="item">
                                 <div class="product-img">
-                                    <img src="storage/project/project{{$recentProject->id}}" alt="Product Image">
+                                    <img src="storage/project/project{{$recentProject->id}}.jpg" alt="Product Image">
                                 </div>
                                 <div class="product-info">
                                     <h4  class="product-title">{{ $recentProject->name }}
