@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::get('projects/index', 'Api\ProjectsController@index');
-
+Route::get('projects/recent', 'Api\ProjectsController@recentProjects');
 Route::get('projects/{project}', 'Api\ProjectsController@show');
 
 Route::get('categories', 'Api\CategoryController@index');
@@ -28,6 +28,7 @@ Route::post('register', 'Api\AuthController@register');
 
 Route::post('retrievepassword', 'Api\EmailController@sendMail');
 Route::patch('resetpassword', 'Api\UserController@resetPassword');
+
 
 
 Route::middleware('auth:api')->group(function () {
