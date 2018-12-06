@@ -32,8 +32,7 @@ class ProjectsController extends Controller
         $user = auth('api')->user();
         $project = Project::create(array_merge($request->except('img_path'), ['raising_user_id' => $user->id]));
 
-        if($request->input('img_path'))
-        {
+        if ($request->input('img_path')) {
             file_put_contents(storage_path('app/public/project/project' . $project->id . '.jpg'),
                 file_get_contents($request->input('img_path')));
         }
@@ -155,5 +154,20 @@ class ProjectsController extends Controller
             'success' => true,
             'user' => auth('api')->user(),
         ]);
+    }
+
+    public function recentProjects()
+    {
+        $projects = Project::orderBy('created_at', 'ASC')->get();
+
+        for ($i = 0; $i < 5; $i++) {
+            $projects[$i]->img_path = asset('storage/project/project' . $projects[$i]->id . '.jpg');
+        }
+
+
+        $recentProjects = array($projects[0], $projects[1], $projects[2], $projects[3], $projects[4]);
+
+        return response()->json($recentProjects);
+
     }
 }
