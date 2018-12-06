@@ -52,12 +52,20 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        $t = file_exists(storage_path('app/public/user/user' .$user->id . '.jpg'));
+
+        if ($t) {
+            $user->profile_URL = asset('storage/user/user' . $user->id . '.jpg');
+        } else {
+            $user->profile_URL = asset('storage/user/default.jpg');
+        }
+
+        return new UserResource($user);
     }
 
     /**

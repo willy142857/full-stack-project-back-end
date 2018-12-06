@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('projects/index', 'Api\ProjectsController@index');
 Route::get('projects/recent', 'Api\ProjectsController@recentProjects');
 Route::get('projects/{project}', 'Api\ProjectsController@show');
-
+Route::get('profile/{user}', 'Api\UserController@show');
 Route::get('categories', 'Api\CategoryController@index');
 
 Route::post('login', 'Api\AuthController@login');
