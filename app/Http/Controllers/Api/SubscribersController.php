@@ -19,5 +19,19 @@ class SubscribersController extends Controller
         return response()->json($request);
     }
 
+    public function destroy(Request $request)
+    {
+        $this->validate($request, [
+            'email'=>'email|required'
+        ]);
+        $email = $request->email;
+        $data = Subscriber::where('email', $email)->get();
+        Subscriber::where('email', $email)
+            ->delete();
+        return response()->json([
+            'success' => true,
+            'data' => $data,
+        ]);
+    }
 
 }
