@@ -25,6 +25,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('newMail', 'Api\EmailController@index')->name('emails.index');
 
+    Route::delete('newMail/{subscriber}', 'Api\EmailController@destroy')->name('emails.destroy');
+
     Route::post('sendNewMail', 'Api\EmailController@sendSubscriptionMail')->name('emails.sendSub');
 
     Route::post('sendProjectEndMail', 'Api\EmailController@sendEndProjectMail')->name('emails.sendEnd');
