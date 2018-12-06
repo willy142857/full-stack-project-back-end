@@ -112,7 +112,17 @@ class EmailController extends Controller
     //  show a new subscription mail view
     public function index()
     {
-        return view('emails.writeNewMail');
+        $subscribers = Subscriber::all();
+        $data = [
+            'subscribers' => $subscribers,
+        ];
+        return view('emails.writeNewMail', $data);
+    }
+
+    public function destroy(Subscriber $subscriber)
+    {
+        $subscriber->delete();
+        return redirect(route('emails.index'));
     }
 
 
