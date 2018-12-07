@@ -5,6 +5,7 @@ use Illuminate\Database\Seeder;
 
 class Example1ProjectTableSeeder extends Seeder
 {
+
     /**
      * Run the database seeds.
      *
@@ -12,6 +13,8 @@ class Example1ProjectTableSeeder extends Seeder
      */
     public function run()
     {
+        Project::truncate();
+        Feedback::truncate();
         $faker = \Faker\Factory::create('zh_TW');
 
         Project::create([
