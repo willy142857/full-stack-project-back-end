@@ -80,7 +80,12 @@ class ProjectsController extends Controller
 
     public function update(ProjectRequest $request, Project $project)
     {
-        $project->update($request->all());
+        $project->update($request->except('img_path'));
+
+        if ($request->input('img_path')) {
+            file_put_contents(storage_path('app/public/project/project' . $project->id . '.jpg'),
+                file_get_contents($request->input('img_path')));
+        }
         $feedbacks = $request->input('feedbacks');
 
         foreach ($feedbacks as $feedback) {
