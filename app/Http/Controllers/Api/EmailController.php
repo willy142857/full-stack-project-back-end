@@ -59,8 +59,8 @@ class EmailController extends Controller
             });
         }
 
-
-        return  view('emails.writeNewMail');
+        return redirect(route('emails.index'));
+        //return  view('emails.writeNewMail');
     }
 
     public function sendEndProjectMail()
@@ -116,6 +116,7 @@ class EmailController extends Controller
         $data = [
             'subscribers' => $subscribers,
         ];
+
         return view('emails.writeNewMail', $data);
     }
 
