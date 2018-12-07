@@ -53,7 +53,7 @@ class ProjectsTableSeeder extends Seeder
             foreach (range(1, rand(1, 5)) as $i) {
                 $date = $startAt->addDays(rand(0, 15));
                 Comment::create([
-                    'user_id' => rand(1, 100),
+                    'user_id' => rand(1, 29),
                     'project_id' => $index,
                     'rating' => rand(1, 5),
                     'comment' => $faker->realText(rand(10, 50)),
