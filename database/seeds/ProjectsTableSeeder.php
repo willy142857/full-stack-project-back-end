@@ -17,7 +17,7 @@ class ProjectsTableSeeder extends Seeder
      */
     public function run()
     {
-        Comment::turncate();
+        Comment::truncate();
 
         $faker = \Faker\Factory::create('zh_TW');
 
