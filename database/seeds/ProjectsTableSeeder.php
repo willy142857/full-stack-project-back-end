@@ -22,7 +22,7 @@ class ProjectsTableSeeder extends Seeder
         $faker = \Faker\Factory::create('zh_TW');
 
         foreach (range(1, 30) as $index) {
-            $startAt = now()->subDays(rand(30, 400));
+            $startAt = now()->subDays(rand(0, 20));
 
             foreach (range(1, rand(1, 5)) as $i) {
                 $date = $startAt->addDays(rand(0, 15));
@@ -32,7 +32,7 @@ class ProjectsTableSeeder extends Seeder
                     'rating' => rand(1, 5),
                     'comment' => $faker->realText(rand(10, 50)),
                     'created_at' => $date,
-                    'updated_at' => $date->addDays(rand(0, 15)),
+                    'updated_at' => $date,
                 ]);
             }
         }
