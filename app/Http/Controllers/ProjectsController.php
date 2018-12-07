@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Comment;
 use App\Feedback;
+use App\Following;
 use App\Project;
 use Illuminate\Http\Request;
 
@@ -86,7 +88,13 @@ class ProjectsController extends Controller
     // Remove the specified resource from storage.
     public function destroy(Project $project)
     {
+//        Feedback::where('project_id', $project->id)->delete();
+//        Comment::where('project_id', $project->id)->delete();
+//        Following::where('project_id', $project->id)->delete();
         $project->delete();
+        $project->comments()->delete();
+        $project->feedbacks()->delete();
+        $project->followings()->delete();
         return redirect(route('projects.index'));
     }
 
